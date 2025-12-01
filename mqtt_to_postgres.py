@@ -32,6 +32,8 @@ MQTT_BROKER = os.getenv('MQTT_BROKER', '138.68.158.9')
 MQTT_PORT = int(os.getenv('MQTT_PORT', '1883'))
 MQTT_TOPIC = os.getenv('MQTT_TOPIC', 'cs/v1/#')  # Subscribe to all CR6 topics
 MQTT_CLIENT_ID = os.getenv('MQTT_CLIENT_ID', 'mqtt_postgres_bridge')
+MQTT_USERNAME = os.getenv('MQTT_USERNAME', None)
+MQTT_PASSWORD = os.getenv('MQTT_PASSWORD', None)
 
 # PostgreSQL configuration
 DB_HOST = os.getenv('DB_HOST', 'obs.valentiamet.com')
@@ -374,6 +376,11 @@ def main():
     client.on_connect = on_connect
     client.on_disconnect = on_disconnect
     client.on_message = on_message
+    
+    # Set username and password if provided
+    if MQTT_USERNAME and MQTT_PASSWORD:
+        client.username_pw_set(MQTT_USERNAME, MQTT_PASSWORD)
+        logger.info(f"Using authentication with username: {MQTT_USERNAME}")
     
     # Connect to MQTT broker
     try:
