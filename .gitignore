@@ -1,0 +1,21 @@
+# MQTT data and logs
+data/
+log/
+
+# Password files
+config/passwd
+config/*.pwd
+
+# Docker
+.env
+
+# OS files
+.DS_Store
+Thumbs.db
+
+# Editor files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
