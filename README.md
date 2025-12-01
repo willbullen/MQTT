@@ -55,14 +55,14 @@ sudo chown -R 1883:1883 data log
 ### 4. Start the MQTT broker
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### 5. Verify the broker is running
 
 ```bash
-docker-compose ps
-docker-compose logs -f mosquitto
+docker compose ps
+docker compose logs -f mosquitto
 ```
 
 ## Configuration
@@ -80,7 +80,7 @@ For production use, you should:
 1. **Disable anonymous access** and configure authentication:
    ```bash
    # Create password file
-   docker-compose exec mosquitto mosquitto_passwd -c /mosquitto/config/passwd username
+   docker compose exec mosquitto mosquitto_passwd -c /mosquitto/config/passwd username
    ```
 
 2. **Update mosquitto.conf** to use authentication:
@@ -98,25 +98,25 @@ For production use, you should:
 ### Start the broker
 
 ```bash
-docker-compose up -d
+docker compose up -d
 ```
 
 ### Stop the broker
 
 ```bash
-docker-compose down
+docker compose down
 ```
 
 ### View logs
 
 ```bash
-docker-compose logs -f mosquitto
+docker compose logs -f mosquitto
 ```
 
 ### Restart the broker
 
 ```bash
-docker-compose restart
+docker compose restart
 ```
 
 ## Testing the MQTT Broker
@@ -161,10 +161,10 @@ Monitor the broker status:
 
 ```bash
 # Check container status
-docker-compose ps
+docker compose ps
 
 # View real-time logs
-docker-compose logs -f
+docker compose logs -f
 
 # Check resource usage
 docker stats mosquitto
@@ -176,7 +176,7 @@ docker stats mosquitto
 
 Check logs for errors:
 ```bash
-docker-compose logs mosquitto
+docker compose logs mosquitto
 ```
 
 ### Permission issues
@@ -188,7 +188,7 @@ sudo chown -R 1883:1883 data log config
 
 ### Connection refused
 
-- Verify the container is running: `docker-compose ps`
+- Verify the container is running: `docker compose ps`
 - Check firewall rules: `sudo ufw status`
 - Verify port bindings: `docker port mosquitto`
 
