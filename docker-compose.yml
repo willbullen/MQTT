@@ -15,6 +15,21 @@ services:
     networks:
       - mqtt-network
 
+  mqtt-bridge:
+    build:
+      context: .
+      dockerfile: Dockerfile.bridge
+    container_name: mqtt-bridge
+    restart: unless-stopped
+    depends_on:
+      - mosquitto
+    env_file:
+      - .env
+    volumes:
+      - ./log:/home/ubuntu/MQTT/log
+    networks:
+      - mqtt-network
+
 networks:
   mqtt-network:
     driver: bridge
